@@ -26,7 +26,7 @@ const int drivePin = 3; // Read input from the drive channel
 const int motor1Pin = 4; // Drive the motor 1 pin of the motor controller
 const int motor2Pin = 5; // Drive the motor 2 pin of the motor controller
 const int motor3Pin = 6; // Drive the motor 3 pin of the motor controller
-const int motor5Pin = 7; // Drive the motor 4 pin of the motor controller
+const int motor4Pin = 7; // Drive the motor 4 pin of the motor controller
 
 void setup() {
 
@@ -35,9 +35,9 @@ void setup() {
 
   //and our output pins for movement
   pinMode(motor1Pin, OUTPUT);
-  pinMode(motorPin2, OUTPUT);
-  pinMode(motorPin3, OUTPUT);
-  pinMode(motorPin4, OUTPUT);
+  pinMode(motor2Pin, OUTPUT);
+  pinMode(motor3Pin, OUTPUT);
+  pinMode(motor4Pin, OUTPUT);
   
   Serial.begin(9600); // Pour a bowl of Serial
 

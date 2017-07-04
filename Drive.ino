@@ -10,37 +10,37 @@ void Drive(int motorstate){
   case 0:
     //no movement
     digitalWrite(motor1Pin, LOW);
-    digitalWrite(motorPin2, LOW);
-    digitalWrite(motorPin3, LOW);
-    digitalWrite(motorPin4, LOW);
+    digitalWrite(motor2Pin, LOW);
+    digitalWrite(motor3Pin, LOW);
+    digitalWrite(motor4Pin, LOW);
     break;
   case 1:
     //rotate left
     digitalWrite(motor1Pin, HIGH);
-    digitalWrite(motorPin2, LOW);
-    digitalWrite(motorPin3, LOW);
-    digitalWrite(motorPin4, HIGH);
+    digitalWrite(motor2Pin, LOW);
+    digitalWrite(motor3Pin, LOW);
+    digitalWrite(motor4Pin, HIGH);
     break;
   case 2:
     //rotate right
     digitalWrite(motor1Pin, LOW);
-    digitalWrite(motorPin2, HIGH);
-    digitalWrite(motorPin3, HIGH);
-    digitalWrite(motorPin4, LOW);
+    digitalWrite(motor2Pin, HIGH);
+    digitalWrite(motor3Pin, HIGH);
+    digitalWrite(motor4Pin, LOW);
     break;
   case 3:
     //backward
     digitalWrite(motor1Pin, HIGH);
-    digitalWrite(motorPin2, LOW);
-    digitalWrite(motorPin3, HIGH);
-    digitalWrite(motorPin4, LOW);
+    digitalWrite(motor2Pin, LOW);
+    digitalWrite(motor3Pin, HIGH);
+    digitalWrite(motor4Pin, LOW);
     break;
   case 4:
     //forward
     digitalWrite(motor1Pin, LOW);
-    digitalWrite(motorPin2, HIGH);
-    digitalWrite(motorPin3, LOW);
-    digitalWrite(motorPin4, HIGH);
+    digitalWrite(motor2Pin, HIGH);
+    digitalWrite(motor3Pin, LOW);
+    digitalWrite(motor4Pin, HIGH);
     break;
   }
 }
