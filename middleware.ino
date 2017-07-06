@@ -25,22 +25,22 @@ int middleware(){
   // taking no action. Better to remember previous
   // state and keep doing that.
   if (steerRead > 100) {
-    if (steerRead > 1780) {
+    if (steerRead > leftThreshold) {
       myaction = 1; //they are turning left
       return myaction; //stop doing anything else as we don't care if thye are moving forward or backward
     }
-    if (steerRead < 1260) {
+    if (steerRead < rightThreshold) {
       myaction = 2; //they are turning right
       return myaction; //stop doing anything else as we don't care if thye are moving forward or backward
     }
   }
 
   //ok so we aren't turning if we got this far, are we going forward or backward?
-  if (driveRead < 1005) {
+  if (driveRead < forwardThreshold) {
     myaction = 4; //they are going forward
     return myaction; //stop doing anything else as they cna't be going forward AND backward at the same time
   }
-  if (driveRead > 1850) {
+  if (driveRead > backwardThreshold) {
     myaction = 3; //they are going backward
     return myaction; //stop
   }

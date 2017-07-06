@@ -17,9 +17,6 @@
 
 */
 
-int steerRead; // Reading from the steer channel.
-int driveRead; // Reading from the drive channel.
-
 // Pin assignments:
 const int steerPin = 2; // Read input from the steer channel
 const int drivePin = 3; // Read input from the drive channel
@@ -27,6 +24,17 @@ const int motor1Pin = 4; // Drive the motor 1 pin of the motor controller
 const int motor2Pin = 5; // Drive the motor 2 pin of the motor controller
 const int motor3Pin = 6; // Drive the motor 3 pin of the motor controller
 const int motor4Pin = 7; // Drive the motor 4 pin of the motor controller
+
+// Reading thresholds. Connect to the serial console while this
+// sketch is running to check the values your Arduino samples.
+// Then update these to suit.
+const int leftThreshold = 1780; // Readings greater than this turn left.
+const int rightThreshold = 1260; // Readings less than this turn right.
+const int forwardThreshold = 1005; // Readings less than this go forward.
+const int backwardThreshold = 1850; // Readings greater than this go backward.
+
+int steerRead; // Reading from the steer channel.
+int driveRead; // Reading from the drive channel.
 
 void setup() {
 
