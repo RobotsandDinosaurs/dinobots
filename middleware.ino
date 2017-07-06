@@ -19,13 +19,20 @@ int middleware(){
   //we already have channel 1 and 2 values from the RC control 
 
   //lets see if thye are trying to turn?
-  if (steerRead > 1880) {
-    myaction = 1; //they are turning right
-    return myaction; //stop doing anything else as we don't care if thye are moving forward or backward
-  }
-  if (steerRead < 1160) {
-    myaction = 2; //they are turning left
-    return myaction; //stop doing anything else as we don't care if thye are moving forward or backward
+  // The Arduino occasionally reads a 0 for the steer
+  // channel, so discard that.
+  // TODO: If we get a 0 read, that results in briefly
+  // taking no action. Better to remember previous
+  // state and keep doing that.
+  if (steerRead > 100) {
+    if (steerRead > 1780) {
+      myaction = 1; //they are turning left
+      return myaction; //stop doing anything else as we don't care if thye are moving forward or backward
+    }
+    if (steerRead < 1260) {
+      myaction = 2; //they are turning right
+      return myaction; //stop doing anything else as we don't care if thye are moving forward or backward
+    }
   }
 
   //ok so we aren't turning if we got this far, are we going forward or backward?
@@ -33,7 +40,7 @@ int middleware(){
     myaction = 4; //they are going forward
     return myaction; //stop doing anything else as they cna't be going forward AND backward at the same time
   }
-  if (driveRead > 1950) {
+  if (driveRead > 1850) {
     myaction = 3; //they are going backward
     return myaction; //stop
   }
