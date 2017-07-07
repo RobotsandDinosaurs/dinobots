@@ -1,6 +1,6 @@
 void Drive(int motorstate){
-  //this guy takes the desired outbcome (determined by middleware) and
-  //sets the pins corerctly on the h bridge module
+  //this guy takes the desired outcome (determined by middleware) and
+  //sets the pins correctly on the h bridge module
   //the h bridge module has the following parameters
   //four inputs and 2 pwm (enables). we arn't doing pwm just yet
   //motorstate tells us what to do
