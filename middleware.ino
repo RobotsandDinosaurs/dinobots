@@ -1,7 +1,8 @@
-// this routine, takes the values form the remote and determines
+// this routine, takes the values from the RC reciver (which is listneing to the remote control transmitter) 
+//and determines
 // which action should be taken by the drive mechanism.
 // there are 5 options
-//0 = no movement (no one is doing any thing)
+//0 = no movement (no one is doing anything)
 //1 = rotating on the spot left
 //2 = rotating on the spot right
 //3 = moving backward
