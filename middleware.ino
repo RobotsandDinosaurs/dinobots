@@ -37,13 +37,17 @@ int middleware(){
   }
 
   //ok so we aren't turning if we got this far, are we going forward or backward?
-  if (driveRead < forwardThreshold) {
-    myaction = 4; //they are going forward
-    return myaction; //stop doing anything else as they cna't be going forward AND backward at the same time
-  }
-  if (driveRead > backwardThreshold) {
-    myaction = 3; //they are going backward
-    return myaction; //stop
+  // A 0 read on this channel typically means the transmitter isn't on.
+  // So ignore it.
+  if (driveRead > 100) {
+    if (driveRead < forwardThreshold) {
+      myaction = 4; //they are going forward
+      return myaction; //stop doing anything else as they cna't be going forward AND backward at the same time
+    }
+    if (driveRead > backwardThreshold) {
+      myaction = 3; //they are going backward
+      return myaction; //stop
+    }
   }
   //if we got this far then something went wrong or we have no input. in all cases we should not be moving
   return myaction;
