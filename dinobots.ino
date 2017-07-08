@@ -1,7 +1,8 @@
 /*
   Basic dinobot drive sketch.
-  This is the modifications for Falkor, which has 10 APA102s
-  along the back side. Rainbow time.
+  This is the modifications for Barney, which has 7 APA102s
+  along the front, and a laser LED on its head.
+  Rainbow the RGBs, flash the light.
 
   Modified from the RC PulseIn Serial Read Out sketch by Nick Poole.
   https://www.sparkfun.com/tutorials/348
@@ -46,14 +47,17 @@ int motorState;
 
 int command;
 
+const int ledPin = 10;
 const int clockPin = 13;
 const int dataPin = 11;
 const int numLeds = 10;
 CRGB leds[numLeds];
-boolean flapper = true;
 byte nextHue;
-unsigned long lastLed = 0;
+unsigned long lastRainbow = 0;
 int updateInterval = 150;
+int ledInterval = 30;
+unsigned long lastLed = 0;
+int flapper = HIGH;
 
 void setup() {
   randomSeed(analogRead(A0));
@@ -65,6 +69,8 @@ void setup() {
   pinMode(motor2Pin, OUTPUT);
   pinMode(motor3Pin, OUTPUT);
   pinMode(motor4Pin, OUTPUT);
+
+  pinMode(ledPin, OUTPUT);
   
   Serial.begin(9600); // Pour a bowl of Serial
   command = 0;
