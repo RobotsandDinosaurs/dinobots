@@ -15,8 +15,8 @@
 
 # Hardcoded options:
 # This is for an Uno compatible board
-BOARD=arduino:avr:mega:cpu=atmega2560
-PORT=/dev/tty.usbmodem1421
+BOARD=arduino:avr:nano:cpu=atmega328
+PORT=/dev/tty.wchusbserial1420
 ARDUINOCMD=arduino
 
 ARDUINO_VERBOSE=true
