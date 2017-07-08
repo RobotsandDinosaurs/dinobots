@@ -1,8 +1,8 @@
 /*
   Basic dinobot drive sketch.
-  This has been modified for Clever Girl, who has 8 WS2812B
-  LEDs over each wheel. The idea is to strobe random colours
-  down the line in the direction the wheel is turning.
+  This is the modifications for Arlo, who has 16 APA102 LEDs
+  along its front bumper. I guess they'll just behave the
+  same as Clever Girl's.
 
   Modified from the RC PulseIn Serial Read Out sketch by Nick Poole.
   https://www.sparkfun.com/tutorials/348
@@ -47,7 +47,8 @@ int motorState;
 
 int command;
 
-const int ledPin = 8; // Where the WS2812B string is hooked up.
+const int clockPin = 13;
+const int dataPin = 11;
 const int numLeds = 16;
 CRGB leds[numLeds];
 boolean flapper = true;
@@ -69,7 +70,7 @@ void setup() {
   Serial.begin(9600); // Pour a bowl of Serial
   command = 0;
 
-  FastLED.addLeds<WS2812B, ledPin>(leds, numLeds).setCorrection(TypicalLEDStrip);
+  FastLED.addLeds<APA102, dataPin, clockPin>(leds, numLeds).setCorrection(TypicalLEDStrip);
   FastLED.setBrightness(50);
 }
 
