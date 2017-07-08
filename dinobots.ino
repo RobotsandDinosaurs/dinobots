@@ -28,10 +28,13 @@ const int motor4Pin = 7; // Drive the motor 4 pin of the motor controller
 // Reading thresholds. Connect to the serial console while this
 // sketch is running to check the values your Arduino samples.
 // Then update these to suit.
-const int leftThreshold = 1780; // Readings greater than this turn left.
-const int rightThreshold = 1260; // Readings less than this turn right.
-const int forwardThreshold = 1005; // Readings less than this go forward.
-const int backwardThreshold = 1850; // Readings greater than this go backward.
+// Tuned for both channels in N position (not R),
+// and trim turned as far anti-clockwise as they'll go.
+// That puts idle at ~1280 for steer and ~1270 for drive.
+const int leftThreshold = 1000; // Readings greater than this turn left.
+const int rightThreshold = 1500; // Readings less than this turn right.
+const int forwardThreshold = 900; // Readings less than this go forward.
+const int backwardThreshold = 1500; // Readings greater than this go backward.
 
 int steerRead; // Reading from the steer channel.
 int driveRead; // Reading from the drive channel.

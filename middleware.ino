@@ -26,11 +26,11 @@ int middleware(){
   // taking no action. Better to remember previous
   // state and keep doing that.
   if (steerRead > 100) {
-    if (steerRead > leftThreshold) {
+    if (steerRead < leftThreshold) {
       myaction = 1; //they are turning left
       return myaction; //stop doing anything else as we don't care if thye are moving forward or backward
     }
-    if (steerRead < rightThreshold) {
+    if (steerRead > rightThreshold) {
       myaction = 2; //they are turning right
       return myaction; //stop doing anything else as we don't care if thye are moving forward or backward
     }
