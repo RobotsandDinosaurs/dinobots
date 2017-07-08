@@ -1,5 +1,8 @@
 /*
   Basic dinobot drive sketch.
+  This has been modified for Clever Girl, who has 8 WS2812B
+  LEDs over each wheel. The idea is to strobe random colours
+  down the line in the direction the wheel is turning.
 
   Modified from the RC PulseIn Serial Read Out sketch by Nick Poole.
   https://www.sparkfun.com/tutorials/348
@@ -16,6 +19,8 @@
   - Motor 4 connected to pin 7.
 
 */
+
+#include <FastLED.h>
 
 // Pin assignments:
 const int steerPin = 2; // Read input from the steer channel
@@ -38,9 +43,20 @@ const int backwardThreshold = 1500; // Readings greater than this go backward.
 
 int steerRead; // Reading from the steer channel.
 int driveRead; // Reading from the drive channel.
+int motorState;
+
+int command;
+
+const int ledPin = 8; // Where the WS2812B string is hooked up.
+const int numLeds = 16;
+CRGB leds[numLeds];
+boolean flapper = true;
+byte nextHue;
+unsigned long lastLed = 0;
+int updateInterval = 150;
 
 void setup() {
-
+  randomSeed(analogRead(A0));
   pinMode(steerPin, INPUT); // Set our input pins as such
   pinMode(drivePin, INPUT);
 
@@ -51,33 +67,26 @@ void setup() {
   pinMode(motor4Pin, OUTPUT);
   
   Serial.begin(9600); // Pour a bowl of Serial
+  command = 0;
 
+  FastLED.addLeds<WS2812B, ledPin>(leds, numLeds).setCorrection(TypicalLEDStrip);
+  FastLED.setBrightness(50);
 }
 
 void loop() {
   steerRead = pulseIn(3, HIGH, 20000); // Read the pulse width of 
   driveRead = pulseIn(2, HIGH, 29000); // each channel
+  motorState = middleware();
   Serial.print("steerRead ");
   Serial.print(steerRead);
   Serial.print(" driveRead ");
   Serial.print(driveRead);
   Serial.print("         ");
-  Serial.println(middleware());
-  Drive(middleware());
+  Serial.println(motorState);
+  Drive(motorState);
+  Lights(motorState);
 
   //delay(1000); // I put this here just to make the terminal 
   // window happier
 
-  //ok, the two channel tranmitter sits at
-  // ch 1: 1500
-  // ch 2: 1024 when the tx is off
-  //when on range is
-  // ch 1: 2000 - 1520 - 960 (steering 2044 right)
-  // ch 2: 2015 - 1520 - 1069 (throttle 1000 full forward)
-
-  //there are some combinations we need to code for
-  //turning, turning and moving, moving.
-  //and then we need direction for all three
-
-  
 }
