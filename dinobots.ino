@@ -69,7 +69,7 @@ void setup() {
   Serial.begin(9600); // Pour a bowl of Serial
   command = 0;
 
-  FastLED.addLeds<APA102, dataPin, clockPin>(leds, numLeds).setCorrection(TypicalLEDStrip);
+  FastLED.addLeds<APA102, dataPin, clockPin, BGR>(leds, numLeds).setCorrection(TypicalLEDStrip);
   FastLED.setBrightness(50);
 }
 
