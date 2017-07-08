@@ -1,8 +1,7 @@
 /*
   Basic dinobot drive sketch.
-  This is the modifications for Arlo, who has 16 APA102 LEDs
-  along its front bumper. I guess they'll just behave the
-  same as Clever Girl's.
+  This is the modifications for Falkor, which has 10 APA102s
+  along the back side. Rainbow time.
 
   Modified from the RC PulseIn Serial Read Out sketch by Nick Poole.
   https://www.sparkfun.com/tutorials/348
@@ -49,7 +48,7 @@ int command;
 
 const int clockPin = 13;
 const int dataPin = 11;
-const int numLeds = 16;
+const int numLeds = 10;
 CRGB leds[numLeds];
 boolean flapper = true;
 byte nextHue;
